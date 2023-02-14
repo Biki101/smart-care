@@ -61,11 +61,9 @@ const WarantyProducts = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  console.log(allServices);
   const warrantyProducts = allServices.filter(
     (items: any) => items?.brand_name === "Warranty Products"
   );
-  console.log(warrantyProducts);
   return (
     <div className="bg-white md:pt-[38px] pt-[40px] ">
       <div className="container mx-auto pl-[10px] sm:pl-[10px]">

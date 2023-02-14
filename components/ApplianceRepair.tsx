@@ -93,11 +93,9 @@ const ApplianceRepair = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  console.log(allServices);
   const appllianceServices = allServices.filter(
     (items: any) => items?.brand_name === "Appliances Repair"
   );
-  console.log(appllianceServices);
   return (
     <div className="bg-[#FBFCFE] pt-[38px] pb-[42px]">
       <div className="container mx-auto pl-[10px] sm:pl-[0px]">

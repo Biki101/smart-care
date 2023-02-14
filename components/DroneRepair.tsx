@@ -61,11 +61,9 @@ const DroneRepair = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  console.log(allServices);
   const droneServices = allServices.filter(
     (items: any) => items?.brand_name === "Drone Repair"
   );
-  console.log(droneServices);
   return (
     <div className="bg-[#fff] md:pt-[38px] ">
       <div className="container mx-auto pl-[10px] sm:pl-[0px]">

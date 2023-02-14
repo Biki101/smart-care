@@ -61,11 +61,9 @@ const CarpenterService = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  console.log(allServices);
   const carpentServices = allServices.filter(
     (items: any) => items?.brand_name === "Carpenter Service"
   );
-  console.log(carpentServices);
   return (
     <div className="bg-[#FBFCFE] pt-[43px] md:mt-[38px] pb-[44px]">
       <div className="container mx-auto pl-[10px] sm:pl-[0px]">

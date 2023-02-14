@@ -46,12 +46,10 @@ const Smartcare: NextPage = () => {
         `${baseUrl}/multiservice/masterconfig/publicmasterconfig/getSliderListpop1`
       )
       .then((response: any) => {
-        console.log(response);
         let data = response.data.brands;
         dispatch(getAllServices(data));
       });
   }, []);
-  console.log(useSelector((state: any) => state?.allServices));
   return (
     <div className="">
       <Head>

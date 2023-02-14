@@ -61,11 +61,9 @@ const MobileTabs = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  console.log(allServices);
   const mobileServices = allServices.filter(
     (items: any) => items?.brand_name === "Mobiles & Tabs"
   );
-  console.log(mobileServices);
   return (
     <div className="bg-white pt-[43px] md:pt-0 md:mt-[38px]">
       <div className="container mx-auto pl-[10px] sm:pl-[0px]">
@@ -79,7 +77,7 @@ const MobileTabs = (props: Props) => {
         </div>
         <Slider {...settings} className="mt-[28.5px] ">
           {mobileServices.map((items: any, index: any) => (
-            <div className="cursor-pointer ">
+            <div className="cursor-pointer " key={index}>
               <div className="bg-white border border-[#EDEDED] rounded-[5px] transform hover:scale-[105%] transition-all duration-200 ease-in-out mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
                 <img
                   src={items?.image_url}

@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   allServices: [],
-  appliances: [],
 };
 
 export const allServicesSlice = createSlice({

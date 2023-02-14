@@ -61,11 +61,9 @@ const CleaningPestControl = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  console.log(allServices);
   const pestControlServices = allServices.filter(
     (items: any) => items?.brand_name === "Cleaning & Pest Control"
   );
-  console.log(pestControlServices);
   return (
     <div className="bg-[#fff] md:pt-[38px] ">
       <div className="container mx-auto pl-[10px] sm:pl-[0px]">
