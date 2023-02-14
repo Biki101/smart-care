@@ -54,7 +54,7 @@ const Categories = (props: Props) => {
       )
       .then((res) => {
         setBrands(res.data.brands);
-        console.log(brands);
+        // console.log(brands);
       })
       .catch((error) => console.log("Axios Error: " + error));
   }, []);
