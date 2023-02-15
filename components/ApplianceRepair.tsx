@@ -93,6 +93,7 @@ const ApplianceRepair = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
+  // console.log(allServices);
   const appllianceServices = allServices.filter(
     (items: any) => items?.brand_name === "Appliances Repair"
   );
@@ -103,6 +104,7 @@ const ApplianceRepair = (props: Props) => {
           <h1 className="text-[#232323] md:text-[20px] text-[17px] leading-[38.88px] font-bold">
             Appliance Repair
           </h1>
+          Appliance
           <p className="sm:hidden text-[#2591B2] text-[12px] leading-[18px] font-normal cursor-pointer">
             View All
           </p>
