@@ -61,7 +61,7 @@ const MedicalEquipments = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  const medicalServices = allServices.filter(
+  const medicalServices = allServices?.filter(
     (items: any) => items?.brand_name === "Medical Equipment"
   );
   return (
@@ -76,7 +76,7 @@ const MedicalEquipments = (props: Props) => {
           </p>
         </div>
         <Slider {...settings} className="mt-[28.5px] ">
-          {medicalServices.map((items: any, index: any) => (
+          {medicalServices?.map((items: any, index: any) => (
             <div className="cursor-pointer " key={index}>
               <div className="bg-white border border-[#EDEDED] transform hover:scale-[105%] transition-all duration-200 ease-in-out rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
                 <img

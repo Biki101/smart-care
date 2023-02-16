@@ -10,7 +10,7 @@ import parse from "html-react-parser";
 // import { Rate } from 'antd';
 
 const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
+  // console.log(`selected ${value}`);
 };
 type Props = {};
 
@@ -26,7 +26,9 @@ const Partpurja = (props: Props) => {
   console.log(allParts);
   return (
     <div>
-      <Topbar />
+      <div className="w-[80rem] m-auto">
+        <Topbar />
+      </div>
       <div>
         <div className=" relative mb-[39px]">
           <div className=" flex items-center justify-center mt-[0px]">
@@ -45,7 +47,7 @@ const Partpurja = (props: Props) => {
             </p>
           </div>
         </div>
-        <div className="container mx-auto">
+        <div className="container mx-auto w-[80rem]">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-[#121212] text-[32px] leading-[37.5px] font-normal tracking-[0.01em]">
@@ -71,36 +73,33 @@ const Partpurja = (props: Props) => {
           {/* products */}
           <div className="grid grid-cols-5 gap-x-[22px] gap-y-[47px] mb-[72px]">
             {allParts.map((items: any, index: any) => {
+              // console.log(items, "part purja product");
               return (
-                <div className="border border-[#EDEDED] rounded-[5px] cursor-pointer hover:shadow-lg">
-                  <div className="h-[251px] flex items-center justify-center">
+                <div className="border border-[#EDEDED] rounded-[5px] cursor-pointer hover:shadow-lg hover:border-2 hover:border-red-300 flex-col justify-between items-center w-[250px]">
+                  <div className="flex items-center justify-center px-2 pt-2">
                     <img
                       src={items?.filename}
                       alt={items?.features}
-                      className="w-full h-[251px] object-cover"
+                      className="w-full h-[150px] overflow-hidden  rounded-t-[5px]"
                     />
                   </div>
-                  <div className="px-[10px] pt-[10px] pb-[17px]">
-                    <div className="bg-[#1F3F981A] rounded-[37px] mt-[8px] py-[5px] px-[10px] inline-block">
-                      <p className="text-[#1F3F98] text-[12px] leading-[14.58px] font-bold inline-block">
+                  <div className="px-[17px] flex flex-col justify-between items-start p-5">
+                    <div className="bg-[#1F3F981A] rounded-[37px] mt-[8px] py-[5px] px-[10px] inline-block] w-full text-center">
+                      <p className="text-[#1F3F98] text-[12px] leading-[14.58px] font-bold inline-block p-2 whitespace-nowrap w-full">
                         {items?.features}
                       </p>
                     </div>
-                    <h2 className="text-[#121212] text-[14px] leading-[17.01px] font-bold max-w-257px mt-[9px] pb-[13px]">
+                    <h2 className="text-[#121212] text-justify leading-[17.01px] font-bold max-w-257px mt-[15px] pb-[13px] h-[51px] text-[12px]">
                       {/* htmlString variable */}
                       {parse(items?.blog_name)}
                     </h2>
-                    <p className="text-[#121212] text-[14px] leading-[17.01px] font-normal">
-                      {`
-                        Market Price: Rs. ${items?.market_rate}
-                        `}
-                    </p>
-                    <div className="flex items-center justify-between mt-[18px]">
-                      <p className="text-[#ED1B26] text-[20px] leading-[24.3px] tracking-[0.01em] font-medium">
+
+                    <div className="flex items-center justify-between mt-[18px] w-full">
+                      <p className="text-[#ED1B26] text-[14px] leading-[24.3px] tracking-[0.01em] font-medium">
                         {`Rs. ${items?.our_rate}`}
                       </p>
-                      <p className="text-[#505056] text-[14px] leading-[17.01px] font-normal tracking-[0.01em]">
-                        View Details
+                      <p className="text-[#505056] text-[10px] leading-[17.01px] font-normal tracking-[0.01em] line-through">
+                        {`Rs. ${items?.market_rate}`}
                       </p>
                     </div>
                   </div>

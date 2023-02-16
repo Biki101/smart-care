@@ -61,7 +61,7 @@ const WarantyProducts = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  const warrantyProducts = allServices.filter(
+  const warrantyProducts = allServices?.filter(
     (items: any) => items?.brand_name === "Warranty Products"
   );
   return (
@@ -76,7 +76,7 @@ const WarantyProducts = (props: Props) => {
           </p>
         </div>
         <Slider {...settings} className="mt-[28.5px] ">
-          {warrantyProducts.map((items: any, index: any) => (
+          {warrantyProducts?.map((items: any, index: any) => (
             <div className="cursor-pointer " key={index}>
               <div className="bg-white border border-[#EDEDED] transform hover:scale-[105%] transition-all duration-200 ease-in-out rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
                 <img

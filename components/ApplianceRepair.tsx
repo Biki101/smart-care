@@ -93,8 +93,8 @@ const ApplianceRepair = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  // console.log(allServices);
-  const appllianceServices = allServices.filter(
+  console.log(allServices);
+  const appllianceServices = allServices?.filter(
     (items: any) => items?.brand_name === "Appliances Repair"
   );
   return (
@@ -110,7 +110,7 @@ const ApplianceRepair = (props: Props) => {
           </p>
         </div>
         <Slider {...settings} className="mt-[28.5px] ">
-          {appllianceServices.map((items: any, index: any) => (
+          {appllianceServices?.map((items: any, index: any) => (
             <div className="cursor-pointer " key={index}>
               <div className="bg-white transform hover:scale-[105%] transition-all duration-200 ease-in-out border border-[#EDEDED] rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%] ">
                 <img

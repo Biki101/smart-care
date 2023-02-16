@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BottomNavbar from "../../../components/BottomNavbar";
 import Copyright from "../../../components/Copyright";
 import Footerinfo from "../../../components/Footerinfo";
@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import CountUp, { useCountUp } from "react-countup";
+import { useRouter } from "next/router";
 
 function SampleNextArrow({ onClick }: any) {
   return (
@@ -95,14 +96,23 @@ const settings = {
 type Props = {};
 
 const servicedetails = (props: Props, context: any) => {
+  const [postId, setPostId] = useState("");
   useCountUp({
     ref: "counter",
     end: 1234567,
     enableScrollSpy: true,
     scrollSpyDelay: 1000,
   });
-  const userId = context?.params?.userId;
-  console.log(userId);
+  // https://smartcare.com.np/multiservice/publiccontrol/publicmasterconfig/getSeoContent?url=https://smartcare.com.np/part-purja/Whirlpool-Washing-Machine-Water-Seal
+  const router = useRouter();
+  // let postId = null;
+  useEffect(() => {
+    if (router?.query) {
+      let id: any = router?.query.servicedetails;
+      setPostId(id);
+    }
+  }, [router.query]);
+  console.log(postId);
   return (
     <>
       <Topbar />

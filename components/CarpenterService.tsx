@@ -61,7 +61,7 @@ const CarpenterService = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  const carpentServices = allServices.filter(
+  const carpentServices = allServices?.filter(
     (items: any) => items?.brand_name === "Carpenter Service"
   );
   return (
@@ -74,7 +74,7 @@ const CarpenterService = (props: Props) => {
           {/* <p className='sm:hidden text-[#BB243F]/[0.5] text-[12px] leading-[15px] font-normal cursor-pointer'>View All</p> */}
         </div>
         <Slider {...settings} className="mt-[28.5px] ">
-          {carpentServices.map((items: any, index: any) => (
+          {carpentServices?.map((items: any, index: any) => (
             <div className="cursor-pointer " key={index}>
               <div className="bg-white border border-[#EDEDED] transform hover:scale-[105%] transition-all duration-200 ease-in-out rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
                 <img

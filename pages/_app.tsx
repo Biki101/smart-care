@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 import Footer from "../components/mblviewComponents/Footer";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
+// import { PersistGate } from "redux-persist/integration/react";
+// import persistStore from "redux-persist/es/persistStore";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -22,11 +24,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
   }
 
+  // let persistor = persistStore(store);
+
   return (
     <>
       <Provider store={store}>
+        {/* <PersistGate loading={null} persistor={persistor}> */}
         <Component {...pageProps} />
         <Footer />
+        {/* </PersistGate> */}
       </Provider>
     </>
   );

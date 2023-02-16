@@ -90,7 +90,7 @@ const PopularBrands = (props: Props) => {
   const allServices = useSelector(
     (state: any) => state.allServices.allServices
   );
-  const popularBrands = allServices.filter(
+  const popularBrands = allServices?.filter(
     (items: any) => items?.brand_name === "Popular Brands"
   );
   return (
@@ -105,7 +105,7 @@ const PopularBrands = (props: Props) => {
           </p>
         </div>
         <Slider {...settings} className="mt-[28.5px] ">
-          {popularBrands.map((items: any, index: any) => (
+          {popularBrands?.map((items: any, index: any) => (
             <div className="cursor-pointer " key={index}>
               <div className="bg-white border transform hover:scale-[105%] transition-all duration-200 ease-in-out border-[#EDEDED] rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
                 <img

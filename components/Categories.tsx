@@ -5,6 +5,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import SubCategories, { LowerSubCategories } from "./SubCategories";
+import ModalSubList from "./ModalSubList";
 // import Slider from "react-slick";
 
 type Props = {};
@@ -48,6 +49,9 @@ const Categories = (props: Props) => {
   const [brand, setBrand] = useState(false);
   const [brands, setBrands] = useState([]);
   const [activeCategory, setactiveCategory] = useState("");
+  // subproducts for modal sub-list
+  // const [subProducts, setSubProducts] = useState([]);
+
   useEffect(() => {
     axios
       .get(
@@ -70,7 +74,7 @@ const Categories = (props: Props) => {
     setOpen(true);
   };
   console.log(activeCategory);
-  // https://smartcare.com.np/multiservice/publiccontrol/publicmasterconfig/getSeoContent?url=https://smartcare.com.np/part-purja/Whirlpool-Washing-Machine-Water-Seal
+
   return (
     <>
       <Modal
@@ -82,31 +86,28 @@ const Categories = (props: Props) => {
         onCancel={() => setOpen(false)}
         width={756}
       >
-        <div className="bg-[#F6F6F6] inline-block pl-[24px] w-[262px] py-[24px] space-y-[30px] mt-[18px]">
-          {allServices
-            .filter(
-              (items: any, index: any) => items?.brand_name === activeCategory
-            )
-            .map((items: any, index: any) => {
-              console.log(items);
-              const slug = (items?.url_product_name).toLowerCase();
-              console.log(slug);
-              // const subSlug =
-              return (
-                <div className="flex flex-row justify-start items-center gap-5">
-                  <img
-                    src={items?.image_url}
-                    alt={items?.alt}
-                    className="w-10"
-                  />
-                  <div className="text-[#505056] text-[18px] leading-[21.87px] tracking-[0.02em] font-normal cursor-pointer hover:text-[#000] transform hover:scale-[102%] transition duration-200 ease-out hover:underline ">
-                    <Link href={`/smart/allservices/${slug}:`}>
-                      {items?.product_name}
-                    </Link>
+        <div className="bg-[#F6F6F6] grid grid-cols-2 pl-[24px] py-[24px] gap-10 w-full">
+          {Array.isArray(allServices) &&
+            allServices
+              .filter(
+                (items: any, index: any) => items?.brand_name === activeCategory
+              )
+              .map((items: any, index: any) => {
+                // console.log(items, "items");
+                const slug = (items?.url_product_name).toLowerCase();
+
+                return (
+                  <div key={index}>
+                    <ModalSubList
+                      image_url={items?.image_url}
+                      alt={items?.alt}
+                      product_name={items?.product_name}
+                      slug={slug}
+                      id={items?.product_id}
+                    />
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
         </div>
       </Modal>
       <Modal
@@ -119,18 +120,19 @@ const Categories = (props: Props) => {
         width={756}
       >
         <div className="bg-[#F6F6F6] inline-block pl-[24px] w-[262px] py-[24px] space-y-[30px] mt-[18px]">
-          {allServices
-            .filter(
-              (items: any, index: any) =>
-                items?.brand_name === "Appliances Repair"
-            )
-            .map((items: any, index: any) => (
-              <Link href="/smart/allservices/servicedetails">
-                <p className="text-[#505056] text-[18px] leading-[21.87px] tracking-[0.02em] font-normal cursor-pointer hover:text-[#000] transform hover:scale-[102%] transition duration-200 ease-out hover:underline ">
-                  {items?.product_name}
-                </p>
-              </Link>
-            ))}
+          {Array.isArray(allServices) &&
+            allServices
+              .filter(
+                (items: any, index: any) =>
+                  items?.brand_name === "Appliances Repair"
+              )
+              .map((items: any, index: any) => (
+                <Link href="/smart/allservices/servicedetails">
+                  <p className="text-[#505056] text-[18px] leading-[21.87px] tracking-[0.02em] font-normal cursor-pointer hover:text-[#000] transform hover:scale-[102%] transition duration-200 ease-out hover:underline ">
+                    {items?.product_name}
+                  </p>
+                </Link>
+              ))}
         </div>
       </Modal>
       <div className="container mx-auto px-[10px] sm:px-0  md:pt-[63px] pt-[50px] md:pb-[44px]">
@@ -149,6 +151,7 @@ const Categories = (props: Props) => {
             ? brands
                 .filter((items: any, index) => index < 7)
                 .map((items: any, index) => {
+                  // console.log(items, "item to subcategory");
                   return (
                     <SubCategories
                       brandName={items?.brand_name}

@@ -47,6 +47,7 @@ const Smartcare: NextPage = () => {
       )
       .then((response: any) => {
         let data = response.data.brands;
+        console.log(data);
         dispatch(getAllServices(data));
       });
   }, []);
