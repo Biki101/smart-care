@@ -49,6 +49,10 @@ const Categories = (props: Props) => {
   const [brand, setBrand] = useState(false);
   const [brands, setBrands] = useState([]);
   const [activeCategory, setactiveCategory] = useState("");
+  const [activeSubCategory, setActiveSubCategory] = useState({
+    productName: "",
+    productId: "",
+  });
   useEffect(() => {
     axios
       .get(
@@ -65,12 +69,33 @@ const Categories = (props: Props) => {
   );
   // console.log(allServices);
 
+  useEffect(() => {
+    let subcategory = allServices.filter(
+      (items: any, index: any) => items?.brand_name === activeCategory
+    );
+    console.log(subcategory);
+    let obj = {
+      productName: subcategory[0]?.product_name,
+      productId: subcategory[0]?.product_id,
+    };
+    setActiveSubCategory(obj);
+  }, [activeCategory]);
+
   // category click function
   const handleCategoryClick = (category: any) => {
     setactiveCategory(category);
     setOpen(true);
   };
 
+  const updateSubCategory = (id: any, name: any) => {
+    let obj = {
+      productName: name,
+      productId: id,
+    };
+    setActiveSubCategory(obj);
+  };
+
+  console.log(activeSubCategory, "activeSubCategory");
   return (
     <>
       <Modal
@@ -92,7 +117,10 @@ const Categories = (props: Props) => {
                 const slug = (items?.url_product_name).toLowerCase();
 
                 return (
-                  <div className="flex flex-row justify-start items-center gap-5">
+                  <div
+                    className="flex flex-row justify-start items-center gap-5"
+                    key={index}
+                  >
                     {/* sub category icon  */}
                     {/* <div className="border-2 border-[#2e617e] p-1 rounded-full">
                       <img
@@ -101,7 +129,15 @@ const Categories = (props: Props) => {
                         className="w-10 h-10 rounded-full overflow-hidden "
                       />
                     </div> */}
-                    <div className="text-[#505056] text-[18px] leading-[21.87px] tracking-[0.02em] no-underline font-normal cursor-pointer hover:text-[#000] transform hover:scale-[102%] transition duration-200 ease-out hover:underline ">
+                    <div
+                      className="text-[#505056] text-[18px] leading-[21.87px] tracking-[0.02em] no-underline font-normal cursor-pointer hover:text-[#000] transform hover:scale-[102%] transition duration-200 ease-out hover:underline "
+                      onClick={() =>
+                        updateSubCategory(
+                          items?.product_id,
+                          items?.product_name
+                        )
+                      }
+                    >
                       {/* <Link href={`/smart/allservices/${slug}`}> */}
                       {items?.product_name}
                       {/* </Link> */}
@@ -109,6 +145,13 @@ const Categories = (props: Props) => {
                   </div>
                 );
               })}
+          </div>
+          {/* Modal Sublist */}
+          <div className="mt-4 flex-1 p-5">
+            <h2 className="text-[#2591B2] text-[18px]">
+              {activeSubCategory.productName}
+            </h2>
+            <ModalSubList id={activeSubCategory.productId} />
           </div>
         </div>
       </Modal>
