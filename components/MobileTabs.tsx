@@ -59,7 +59,7 @@ type Props = {};
 
 const MobileTabs = (props: Props) => {
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   const mobileServices = allServices?.filter(
     (items: any) => items?.brand_name === "Mobiles & Tabs"

@@ -59,7 +59,7 @@ type Props = {};
 
 const CCTV = (props: Props) => {
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   const cctvServices = allServices?.filter(
     (items: any) => items?.brand_name === "CCTV Repair Service"

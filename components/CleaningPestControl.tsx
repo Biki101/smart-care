@@ -59,7 +59,7 @@ type Props = {};
 
 const CleaningPestControl = (props: Props) => {
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   const pestControlServices = allServices?.filter(
     (items: any) => items?.brand_name === "Cleaning & Pest Control"

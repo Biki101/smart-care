@@ -1,28 +1,36 @@
-// import { createStore } from "@reduxjs/toolkit";
-// import allServices from "./allServices";
-// import { persistStore, persistReducer } from "reduxjs-toolkit-persist";
-// import storage from "reduxjs-toolkit-persist/lib/storage"; // defaults to localStorage for web
+// using persist
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import allServices from "./allServices";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
+import thunk from "redux-thunk";
 
-// const persistConfig = {
-//   key: "root",
-//   storage,
-// };
+const persistConfig = {
+  key: "root",
+  storage,
+};
 
-// const persistedReducer = persistReducer(persistConfig, allServices);
+const rootReducer = combineReducers({
+  allServices,
+});
 
-// export default () => {
-//   let store = createStore(persistedReducer);
-//   let persistor = persistStore(store);
-//   return { store, persistor };
-// };
-
-import { configureStore } from "@reduxjs/toolkit";
-import allServicesSlice from "./allServices";
-import subServiceSlice from "./subServiceSlice";
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    allServices: allServicesSlice,
-    subServices: subServiceSlice,
-  },
+  reducer: persistedReducer,
+  devTools: process.env.NODE_ENV !== "production",
+  middleware: [thunk],
 });
+
+export const persistor = persistStore(store);
+
+// import { configureStore } from "@reduxjs/toolkit";
+// import allServicesSlice from "./allServices";
+// import subServiceSlice from "./subServiceSlice";
+
+// export const store = configureStore({
+//   reducer: {
+//     allServices: allServicesSlice,
+//     subServices: subServiceSlice,
+//   },
+// });

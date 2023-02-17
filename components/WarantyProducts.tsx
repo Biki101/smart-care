@@ -59,7 +59,7 @@ type Props = {};
 
 const WarantyProducts = (props: Props) => {
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   const warrantyProducts = allServices?.filter(
     (items: any) => items?.brand_name === "Warranty Products"

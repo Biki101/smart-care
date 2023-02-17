@@ -57,53 +57,60 @@ const Smartcare: NextPage = () => {
         <title>Smart Care</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       {/* topbar */}
       <Topbar />
       {/* banner */}
       <Banner />
       {/* categories */}
-      <Categories />
-      <Products />
-      {/* ApplianceRepair */}
-      <ApplianceRepair />
-      {/* popularBrands */}
-      <PopularBrands />
-      {/* Numbers */}
+      <div className="w-[80rem] m-auto">
+        <Categories />
+        <Products />
+        {/* ApplianceRepair */}
+        <ApplianceRepair />
+        {/* popularBrands */}
+        <PopularBrands />
+        {/* Numbers */}
+      </div>
       <Number />
       {/* Description */}
       {/* <Description /> */}
       {/* WarantyProducts */}
-      <WarantyProducts />
-      {/* eletricianPlumbers */}
-      <ElectricianPlumbers />
-      {/* Air Purify */}
-      <Airpurify />
+      <div className="w-[80rem] m-auto">
+        <WarantyProducts />
+        {/* eletricianPlumbers */}
+        <ElectricianPlumbers />
+        {/* Air Purify */}
+        <Airpurify />
+      </div>
       {/* ads banner */}
       <AdsBanner />
-      {/* mobile& tabs */}
-      <MobileTabs />
-      {/* cctv service */}
-      <CCTV />
-      {/* computer printer */}
-      <ComputerPrinter />
-      {/* medical Equipments */}
-      <MedicalEquipments />
-      {/* Drone Repair */}
-      <DroneRepair />
-      {/* carpenterService */}
-      <CarpenterService />
-      {/* Cleaning Pest Control */}
-      <CleaningPestControl />
+      <div className="w-[80rem] m-auto">
+        {/* mobile& tabs */}
+        <MobileTabs />
+        {/* cctv service */}
+        <CCTV />
+        {/* computer printer */}
+        <ComputerPrinter />
+        {/* medical Equipments */}
+        <MedicalEquipments />
+        {/* Drone Repair */}
+        <DroneRepair />
+        {/* carpenterService */}
+        <CarpenterService />
+        {/* Cleaning Pest Control */}
+        <CleaningPestControl />
+      </div>
       {/* description 2 */}
       <Description2 />
       {/* OurClients */}
-      <OurClients />
-      {/* what our client says */}
-      {/* <ClientFeedback /> */}
-      {/* Download our app */}
-      <SmartCareBlogs />
-      <DownloadOurApp />
+      <div className="w-[80rem] m-auto">
+        <OurClients />
+        {/* what our client says */}
+        {/* <ClientFeedback /> */}
+        {/* Download our app */}
+        <SmartCareBlogs />
+        <DownloadOurApp />
+      </div>
       {/* Bottom navbar */}
       <BottomNavbar />
       {/* footerSection */}

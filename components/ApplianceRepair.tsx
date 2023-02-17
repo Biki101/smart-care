@@ -91,7 +91,7 @@ type Props = {};
 
 const ApplianceRepair = (props: Props) => {
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   console.log(allServices);
   const appllianceServices = allServices?.filter(

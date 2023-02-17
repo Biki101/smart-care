@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const Services = (props: any) => {
   const title = props.service;
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   const services = allServices.filter(
     (item: any, index: any) => item?.brand_name === title

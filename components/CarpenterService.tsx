@@ -59,7 +59,7 @@ type Props = {};
 
 const CarpenterService = (props: Props) => {
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   const carpentServices = allServices?.filter(
     (items: any) => items?.brand_name === "Carpenter Service"

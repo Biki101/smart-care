@@ -8,6 +8,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import CountUp, { useCountUp } from "react-countup";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 function SampleNextArrow({ onClick }: any) {
   return (
@@ -96,7 +98,8 @@ const settings = {
 type Props = {};
 
 const servicedetails = (props: Props, context: any) => {
-  const [postId, setPostId] = useState("");
+  const [productUrl, setProductUrl] = useState("");
+  const [productDescription, setproductDescription] = useState(undefined);
   useCountUp({
     ref: "counter",
     end: 1234567,
@@ -104,15 +107,49 @@ const servicedetails = (props: Props, context: any) => {
     scrollSpyDelay: 1000,
   });
   // https://smartcare.com.np/multiservice/publiccontrol/publicmasterconfig/getSeoContent?url=https://smartcare.com.np/part-purja/Whirlpool-Washing-Machine-Water-Seal
+  // const router = useRouter();
+  // useEffect(() => {
+  //   if (router?.query) {
+  //     let id: any = router?.query.servicedetails;
+  //     let productId = "";
+  //     allServices?.map((items: any, index: any) => {
+  //       if (items?.url_product_name === id) {
+  //         productId = items?.product_id;
+  //         return;
+  //       }
+  //     });
+  //     setPostId(productId);
+  //   }
+  // }, [router.query]);
+
   const router = useRouter();
-  // let postId = null;
+
   useEffect(() => {
-    if (router?.query) {
-      let id: any = router?.query.servicedetails;
-      setPostId(id);
+    const url: any = router?.query.servicedetails;
+    setProductUrl(url);
+    try {
+      let data = new FormData();
+
+      var config = {
+        method: "post",
+        maxBodyLength: Infinity,
+        url: `https://smartcare.com.np/multiservice/publiccontrol/publicmasterconfig/getSeoContent?url=https://smartcare.com.np/service/${productUrl}`,
+        // headers: {
+        //   ...data.getHeaders()
+        // },
+        data: data,
+      };
+
+      axios(config).then((response) => {
+        console.log(response.data.brands);
+        const description = response.data.brands;
+        setproductDescription(description);
+      });
+    } catch {
+      (error: any) => console.log("Axios Error: ", error);
     }
-  }, [router.query]);
-  console.log(postId);
+  }, [productUrl]);
+  console.log(productDescription, "product description");
   return (
     <>
       <Topbar />
@@ -124,7 +161,7 @@ const servicedetails = (props: Props, context: any) => {
             alt=""
           />
 
-          <div className="absolute top-[57px]   text-white product_detail ">
+          <div className="absolute top-[57px]   text-white product_detail">
             <p className="text-[14px] leading-[17.01px] font-normal tracking-[0.02em]">
               appliance Repairs &gt; Microwave Ovens
             </p>
@@ -150,7 +187,7 @@ const servicedetails = (props: Props, context: any) => {
             </div>
           </div>
         </div>
-        <div className="container mx-auto ">
+        <div className="container mx-auto w-[80rem] m-auto">
           <div className="flex gap-[45px]">
             <div className="basis-[70%]  ">
               <h1 className="text-[23px] text-[#505056] leading-[32.89px] font-bold tracking-[0.01em]">
@@ -351,7 +388,7 @@ const servicedetails = (props: Props, context: any) => {
           </div>
         </div>
       </div>
-      <div className="bg-[#FBFCFE] pt-[38px] pb-[52px] mt-[30px]">
+      <div className="bg-[#FBFCFE] pt-[38px] pb-[52px] mt-[30px] w-[80rem] m-auto">
         <div className="container mx-auto pl-[10px] sm:pl-[0px]">
           <div className="flex items-center justify-between pr-[10px]">
             <h1 className="text-[#2591B2] md:text-[20px] text-[17px] leading-[38.88px] font-bold">

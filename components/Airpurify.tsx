@@ -59,7 +59,7 @@ type Props = {};
 
 const Airpurify = (props: Props) => {
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   const humidifierServices = allServices?.filter(
     (items: any) => items?.brand_name === "Air-Purifier/Humidifier"

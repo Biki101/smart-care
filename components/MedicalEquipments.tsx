@@ -59,7 +59,7 @@ type Props = {};
 
 const MedicalEquipments = (props: Props) => {
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   const medicalServices = allServices?.filter(
     (items: any) => items?.brand_name === "Medical Equipment"

@@ -59,7 +59,7 @@ type Props = {};
 
 const ComputerPrinter = (props: Props) => {
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   const printerServices = allServices?.filter(
     (items: any) => items?.brand_name === "Computer/Printer"

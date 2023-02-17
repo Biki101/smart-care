@@ -8,8 +8,8 @@ import BottomNavbar from "../components/BottomNavbar";
 import { useRouter } from "next/router";
 import Footer from "../components/mblviewComponents/Footer";
 import { Provider } from "react-redux";
-import { store } from "../redux/store";
-// import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "../redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 // import persistStore from "redux-persist/es/persistStore";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -18,7 +18,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   if (router.pathname === "/login") {
     return (
       <>
-        {" "}
         <Component {...pageProps} />
       </>
     );
@@ -29,10 +28,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Provider store={store}>
-        {/* <PersistGate loading={null} persistor={persistor}> */}
-        <Component {...pageProps} />
-        <Footer />
-        {/* </PersistGate> */}
+        <PersistGate loading={null} persistor={persistor}>
+          <Component {...pageProps} />
+          <Footer />
+        </PersistGate>
       </Provider>
     </>
   );

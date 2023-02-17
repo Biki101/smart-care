@@ -88,7 +88,7 @@ type Props = {};
 
 const PopularBrands = (props: Props) => {
   const allServices = useSelector(
-    (state: any) => state.allServices.allServices
+    (state: any) => state?.allServices?.allServices
   );
   const popularBrands = allServices?.filter(
     (items: any) => items?.brand_name === "Popular Brands"
