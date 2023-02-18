@@ -50,9 +50,9 @@ const Partpurja = (props: Props) => {
         <div className="container mx-auto w-[80rem]">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-[#121212] text-[32px] leading-[37.5px] font-normal tracking-[0.01em]">
+              <h2 className="text-[#121212] text-[32px] leading-[37.5px] font-normal tracking-[0.01em]">
                 Featured Products{" "}
-              </h1>
+              </h2>
               <p className="text-[#505056] text-[14px] mt-[12px] leading-[16.41px] font-normal tracking-[0.01em]">
                 Showing 1-20 of 200 Products
               </p>
@@ -75,7 +75,10 @@ const Partpurja = (props: Props) => {
             {allParts.map((items: any, index: any) => {
               // console.log(items, "part purja product");
               return (
-                <div className="border border-[#EDEDED] rounded-[5px] cursor-pointer hover:shadow-lg hover:border-2 hover:border-red-300 flex-col justify-between items-center w-[250px]">
+                <div
+                  key={index}
+                  className="border border-[#EDEDED] rounded-[5px] cursor-pointer hover:shadow-lg hover:border-2 hover:border-red-300 flex-col justify-between items-center w-[250px]"
+                >
                   <div className="flex items-center justify-center px-2 pt-2">
                     <img
                       src={items?.filename}

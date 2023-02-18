@@ -1,7 +1,10 @@
 // using persist
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+// reducers
 import allServices from "./allServices";
+import productDetails from "./productDetails";
 import storage from "redux-persist/lib/storage";
+
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 
@@ -12,6 +15,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   allServices,
+  productDetails,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -23,6 +27,8 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+//without persist
 
 // import { configureStore } from "@reduxjs/toolkit";
 // import allServicesSlice from "./allServices";

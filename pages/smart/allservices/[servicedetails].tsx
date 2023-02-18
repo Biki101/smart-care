@@ -8,8 +8,11 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import CountUp, { useCountUp } from "react-countup";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import productDetails, {
+  setProductDetails,
+} from "../../../redux/productDetails";
 
 function SampleNextArrow({ onClick }: any) {
   return (
@@ -99,28 +102,30 @@ type Props = {};
 
 const servicedetails = (props: Props, context: any) => {
   const [productUrl, setProductUrl] = useState("");
-  const [productDescription, setproductDescription] = useState(undefined);
+  const [productDescription, setproductDescription] = useState();
+  const dispatch = useDispatch();
+
+  // Main Category
+  const activeCategory = useSelector(
+    (state: any) => state.productDetails.activeCategory
+  );
+
+  // Sub Category
+  const activeSubCategory = useSelector(
+    (state: any) => state.productDetails.activeSubCategory
+  );
+
+  //sub-category-list
+  const productCategories = useSelector(
+    (state: any) => state?.productDetails?.productList
+  );
+
   useCountUp({
     ref: "counter",
     end: 1234567,
     enableScrollSpy: true,
     scrollSpyDelay: 1000,
   });
-  // https://smartcare.com.np/multiservice/publiccontrol/publicmasterconfig/getSeoContent?url=https://smartcare.com.np/part-purja/Whirlpool-Washing-Machine-Water-Seal
-  // const router = useRouter();
-  // useEffect(() => {
-  //   if (router?.query) {
-  //     let id: any = router?.query.servicedetails;
-  //     let productId = "";
-  //     allServices?.map((items: any, index: any) => {
-  //       if (items?.url_product_name === id) {
-  //         productId = items?.product_id;
-  //         return;
-  //       }
-  //     });
-  //     setPostId(productId);
-  //   }
-  // }, [router.query]);
 
   const router = useRouter();
 
@@ -150,6 +155,7 @@ const servicedetails = (props: Props, context: any) => {
     }
   }, [productUrl]);
   console.log(productDescription, "product description");
+  console.log(productCategories, "product categories");
   return (
     <>
       <Topbar />
@@ -162,11 +168,11 @@ const servicedetails = (props: Props, context: any) => {
           />
 
           <div className="absolute top-[57px]   text-white product_detail">
-            <p className="text-[14px] leading-[17.01px] font-normal tracking-[0.02em]">
-              appliance Repairs &gt; Microwave Ovens
+            <p className="text-[18px] leading-[17.01px] font-normal tracking-[0.02em]">
+              {`${activeCategory} > ${activeSubCategory} `}
             </p>
             <h1 className="text-[38px] leading-[46.17px] font-bold tracking-[0.02em] max-w-[804px] mt-[10px]">
-              Best Microwave Oven Repair in Kathmandu SMART CARE{" "}
+              {/* {productDescription?.og_title} */}
               <span className="bg-[#1F3F98] rounded-[60px] text-[29.75px] leading-[44.63px] font-bold tracking-[0.02em] text-[#F9F9F9] px-[20px]">
                 4.5
               </span>
@@ -191,11 +197,10 @@ const servicedetails = (props: Props, context: any) => {
           <div className="flex gap-[45px]">
             <div className="basis-[70%]  ">
               <h1 className="text-[23px] text-[#505056] leading-[32.89px] font-bold tracking-[0.01em]">
-                {" "}
-                Microwave Oven Repair and Services - Smart Care
+                {productDescription?.page_title}
               </h1>
               <p className="mt-[30px] text-[16px] text-[#000000d8] ">
-                In the present era, almost every house has a microwave.
+                {/* In the present era, almost every house has a microwave.
                 Microwave Oven not only provides a different way of cooking, but
                 it also brings out people's inner chefs. It uses microwave
                 radiation to cause atomic movement in water, fat, sugar
@@ -204,7 +209,8 @@ const servicedetails = (props: Props, context: any) => {
                 might be a headache, especially if you work on a busy schedule.
                 Finding microwave repair experts is indeed difficult and
                 time-consuming. We don't want you or your everyday routines to
-                suffer because of a faulty microwave.
+                suffer because of a faulty microwave. */}
+                {productDescription?.description}
               </p>
               <p className="text-[16px] text-[#000000d8] mt-[20px]">
                 Thus, we at Smart Care Service are here to provide microwave
@@ -214,21 +220,19 @@ const servicedetails = (props: Props, context: any) => {
               <div className="mt-[20px]">
                 <h2 className="text-[16px] text-[#505056] leading-[32.89px] font-bold tracking-[0.01em]">
                   {" "}
-                  Types Of Microwave Oven We Repair
+                  {`Types Of ${productDescription?.title} We Repair`}
                 </h2>
                 <p className="text-[16px] text-[#000000d8]">
-                  We offer Microwave Oven Repair and Services for the following
-                  types:
+                  {`We offer ${productDescription?.title} Repair and Services for the following
+                  types:`}
                 </p>
                 <ul>
-                  <li className="text-[16px] text-[#000000d8]">
-                    {" "}
-                    - Grill Microwave Oven
-                  </li>
-                  <li className="text-[16px] text-[#000000d8]">
-                    {" "}
-                    - Convection Microwave Oven
-                  </li>
+                  {productCategories.map((items: any, index: any) => (
+                    <li key={index} className="text-[16px] text-[#000000d8]">
+                      {" "}
+                      {`- ${items?.text}`}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="pt-[20px]">
@@ -237,7 +241,7 @@ const servicedetails = (props: Props, context: any) => {
                 </h2>
                 <p className="mt-[15px] text-[15px] text-[#505056]">
                   {" "}
-                  Our Microwave Oven Repair and Services Include:
+                  {`Our ${productDescription?.title} Repair and Services Include:`}
                 </p>
                 <div>
                   <h2 className="text-[16px] font-semibold text-[#505056] mt-[20px]">
@@ -345,43 +349,31 @@ const servicedetails = (props: Props, context: any) => {
                 <h1 className="text-white text-[24px] leading-[34.32px] font-bold tracking-[0.01em] text-center ">
                   Select Product Category
                 </h1>
-                <div className="w-[283px] h-[54px] bg-white mt-[50px] ml-[31px] flex items-center justify-between pr-[15.42px] pl-[19.96px]">
-                  <p className="text-[#232323] text-[18px] leading-[25.74px] font-normal">
-                    MWO Convection
-                  </p>
-                  <svg
-                    width="8"
-                    height="14"
-                    viewBox="0 0 8 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1.13672 1L6.57903 7L1.13672 13"
-                      stroke="#121212"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </div>
-                <div className="w-[283px] h-[54px] bg-white mt-[18px] ml-[31px] flex justify-between items-center pl-[19.96px] pr-[15.42px]">
-                  <p className="text-[#232323] text-[18px] leading-[25.74px] font-normal">
-                    MWO Grill
-                  </p>
-                  <svg
-                    width="8"
-                    height="14"
-                    viewBox="0 0 8 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1.13672 1L6.57903 7L1.13672 13"
-                      stroke="#121212"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
+                <div>
+                  {productCategories.map((items: any, index: any) => (
+                    <div
+                      key={index}
+                      className="w-[283px] h-[54px] bg-white mt-[50px] ml-[31px] flex items-center justify-between pr-[15.42px] pl-[19.96px]"
+                    >
+                      <p className="text-[#232323] text-[18px] leading-[25.74px] font-normal">
+                        {items?.Text}
+                      </p>
+                      <svg
+                        width="8"
+                        height="14"
+                        viewBox="0 0 8 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1.13672 1L6.57903 7L1.13672 13"
+                          stroke="#121212"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
