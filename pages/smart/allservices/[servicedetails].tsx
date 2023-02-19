@@ -102,7 +102,10 @@ type Props = {};
 
 const servicedetails = (props: Props, context: any) => {
   const [productUrl, setProductUrl] = useState("");
-  const [productDescription, setproductDescription] = useState();
+  const [productDescription, setproductDescription] = useState({
+    title: "",
+    description: "",
+  });
   const dispatch = useDispatch();
 
   // Main Category
@@ -115,10 +118,12 @@ const servicedetails = (props: Props, context: any) => {
     (state: any) => state.productDetails.activeSubCategory
   );
 
-  //sub-category-list
-  const productCategories = useSelector(
+  //Sub Category List
+  const productCategoriesList = useSelector(
     (state: any) => state?.productDetails?.productList
   );
+
+  console.log(productCategoriesList);
 
   useCountUp({
     ref: "counter",
@@ -128,9 +133,9 @@ const servicedetails = (props: Props, context: any) => {
   });
 
   const router = useRouter();
-
+  const url: any = router?.query.servicedetails;
+  console.log(url);
   useEffect(() => {
-    const url: any = router?.query.servicedetails;
     setProductUrl(url);
     try {
       let data = new FormData();
@@ -146,7 +151,7 @@ const servicedetails = (props: Props, context: any) => {
       };
 
       axios(config).then((response) => {
-        console.log(response.data.brands);
+        // console.log(response.data.brands);
         const description = response.data.brands;
         setproductDescription(description);
       });
@@ -154,8 +159,8 @@ const servicedetails = (props: Props, context: any) => {
       (error: any) => console.log("Axios Error: ", error);
     }
   }, [productUrl]);
-  console.log(productDescription, "product description");
-  console.log(productCategories, "product categories");
+  // console.log(productDescription, "product description");
+  // console.log(productCategories, "product categories");
   return (
     <>
       <Topbar />
@@ -197,7 +202,7 @@ const servicedetails = (props: Props, context: any) => {
           <div className="flex gap-[45px]">
             <div className="basis-[70%]  ">
               <h1 className="text-[23px] text-[#505056] leading-[32.89px] font-bold tracking-[0.01em]">
-                {productDescription?.page_title}
+                {productDescription?.title}
               </h1>
               <p className="mt-[30px] text-[16px] text-[#000000d8] ">
                 {/* In the present era, almost every house has a microwave.
@@ -220,14 +225,14 @@ const servicedetails = (props: Props, context: any) => {
               <div className="mt-[20px]">
                 <h2 className="text-[16px] text-[#505056] leading-[32.89px] font-bold tracking-[0.01em]">
                   {" "}
-                  {`Types Of ${productDescription?.title} We Repair`}
+                  {`Types Of ${activeSubCategory} We Repair`}
                 </h2>
                 <p className="text-[16px] text-[#000000d8]">
                   {`We offer ${productDescription?.title} Repair and Services for the following
                   types:`}
                 </p>
                 <ul>
-                  {productCategories.map((items: any, index: any) => (
+                  {productCategoriesList?.map((items: any, index: any) => (
                     <li key={index} className="text-[16px] text-[#000000d8]">
                       {" "}
                       {`- ${items?.text}`}
@@ -344,19 +349,19 @@ const servicedetails = (props: Props, context: any) => {
               </div>
             </div>
 
-            <div className="basis-[30%] ">
+            <div className="">
               <div className="selectProduct_category  pt-[39px]">
                 <h1 className="text-white text-[24px] leading-[34.32px] font-bold tracking-[0.01em] text-center ">
                   Select Product Category
                 </h1>
                 <div>
-                  {productCategories.map((items: any, index: any) => (
+                  {productCategoriesList?.map((items: any, index: any) => (
                     <div
                       key={index}
                       className="w-[283px] h-[54px] bg-white mt-[50px] ml-[31px] flex items-center justify-between pr-[15.42px] pl-[19.96px]"
                     >
-                      <p className="text-[#232323] text-[18px] leading-[25.74px] font-normal">
-                        {items?.Text}
+                      <p className="text-[#232323] no-underline text-[18px] leading-[25.74px] font-normal cursor-pointer">
+                        {items?.text}
                       </p>
                       <svg
                         width="8"

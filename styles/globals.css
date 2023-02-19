@@ -108,7 +108,8 @@ body {
 
 .selectProduct_category {
   width: 343px;
-  height: 289px;
+  /* height: 289px; */
+  padding-bottom: 10px;
   background: #2591b2;
   box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
