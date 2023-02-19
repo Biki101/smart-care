@@ -13,6 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import productDetails, {
   setProductDetails,
 } from "../../../redux/productDetails";
+import ProductDescription from "../../../components/ProductDescription";
+import PopularServicesSlide from "../../../components/PopularServicesSlide";
+import FAQComponent from "../../../components/FAQComponent";
 
 function SampleNextArrow({ onClick }: any) {
   return (
@@ -200,153 +203,8 @@ const servicedetails = (props: Props, context: any) => {
         </div>
         <div className="container mx-auto w-[80rem] m-auto">
           <div className="flex gap-[45px]">
-            <div className="basis-[70%]  ">
-              <h1 className="text-[23px] text-[#505056] leading-[32.89px] font-bold tracking-[0.01em]">
-                {productDescription?.title}
-              </h1>
-              <p className="mt-[30px] text-[16px] text-[#000000d8] ">
-                {/* In the present era, almost every house has a microwave.
-                Microwave Oven not only provides a different way of cooking, but
-                it also brings out people's inner chefs. It uses microwave
-                radiation to cause atomic movement in water, fat, sugar
-                molecules, etc. to cook the food. That’s why it is faster than
-                normal cooking. But Servicing and repairing a microwave oven
-                might be a headache, especially if you work on a busy schedule.
-                Finding microwave repair experts is indeed difficult and
-                time-consuming. We don't want you or your everyday routines to
-                suffer because of a faulty microwave. */}
-                {productDescription?.description}
-              </p>
-              <p className="text-[16px] text-[#000000d8] mt-[20px]">
-                Thus, we at Smart Care Service are here to provide microwave
-                repair and services that you can order online at any time and
-                from anywhere.
-              </p>
-              <div className="mt-[20px]">
-                <h2 className="text-[16px] text-[#505056] leading-[32.89px] font-bold tracking-[0.01em]">
-                  {" "}
-                  {`Types Of ${activeSubCategory} We Repair`}
-                </h2>
-                <p className="text-[16px] text-[#000000d8]">
-                  {`We offer ${productDescription?.title} Repair and Services for the following
-                  types:`}
-                </p>
-                <ul>
-                  {productCategoriesList?.map((items: any, index: any) => (
-                    <li key={index} className="text-[16px] text-[#000000d8]">
-                      {" "}
-                      {`- ${items?.text}`}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="pt-[20px]">
-                <h2 className="text-[#2591B2] text-[23px] leading-[22.88px] tracking-[0.01em] font-bold">
-                  Our Services
-                </h2>
-                <p className="mt-[15px] text-[15px] text-[#505056]">
-                  {" "}
-                  {`Our ${productDescription?.title} Repair and Services Include:`}
-                </p>
-                <div>
-                  <h2 className="text-[16px] font-semibold text-[#505056] mt-[20px]">
-                    Dead/No On
-                  </h2>
-                  <p className="text-[16px] text-[#000000d8]">
-                    {" "}
-                    If your microwave oven does not turn on, it could be due to
-                    a connection fault, which you can resolve by simply
-                    disconnecting and replugging. If this does not fix your
-                    issue then something serious has happened as the fuse has
-                    blown. You can reach out to Smartcare Repair and Services
-                    for assistance.{" "}
-                  </p>
-                </div>
-                <div>
-                  <h2 className="text-[16px] font-semibold text-[#505056] mt-[20px]">
-                    Keys not Working:
-                  </h2>
-                  <p className="text-[16px] text-[#000000d8]">
-                    The unresponsiveness of the keys(button) can be due to a
-                    variety of reasons ranging from loose panel connection to
-                    damaged switch membrane and control board. If you observe
-                    these kinds of problems, you can contact us at Smart Care
-                    Repair and Services to solve the problem for you.
-                  </p>
-                </div>
-                <div>
-                  <h2 className="text-[16px] font-semibold text-[#505056] mt-[20px]">
-                    Visible sparks inside Microwave oven:
-                  </h2>
-                  <p className="text-[16px] text-[#000000d8]">
-                    {" "}
-                    If you can see visible sparks inside the microwave oven
-                    during its operation, you have to cut its power off
-                    immediately. The cause of visible sparks can be due to
-                    waveguide cover damage, burned diode out, or other issues.
-                    These kinds of issues should be handled by only
-                    professionals. Smartcare Repair And Services have
-                    experienced technicians to solve such problems for you.
-                  </p>
-                </div>
-                <div>
-                  <h2 className="text-[16px] font-semibold text-[#505056] mt-[20px]">
-                    Less/No Heating{" "}
-                  </h2>
-                  <p className="text-[16px] text-[#000000d8]">
-                    The microwave oven seems operating but is not producing
-                    enough heat to warm up food. This might be because of damage
-                    to the heating component. You can call Smartcare Repair and
-                    Services to fix such issues.
-                  </p>
-                </div>
-                <div>
-                  <h2 className="text-[16px] font-semibold text-[#505056] mt-[20px]">
-                    Switching on/off by itself:
-                  </h2>
-                  <p className="text-[16px] text-[#000000d8]">
-                    {" "}
-                    Sometimes microwave oven operates independently by switching
-                    the on/off button by itself. This is caused by various
-                    reasons like a defect in the diode (Triac), improper
-                    functioning of the control panel, or if the switch gets
-                    stuck. You can give us a call at Smartcare Repair and
-                    services to fix your problem for you.
-                  </p>
-                </div>
-                <div>
-                  <h2 className="text-[16px] font-semibold text-[#505056] mt-[20px]">
-                    Other repairs:
-                  </h2>
-                  <p className="text-[16px] text-[#000000d8]">
-                    If you are observing other problems that are not mentioned
-                    above like, microwave door not opening, microwave oven
-                    suddenly stops while heating, or any other issue, you can
-                    contact Smartcare Repair and Services to solve it for you.
-                  </p>
-                </div>
-                <div>
-                  <h2 className="text-[16px] font-semibold text-[#505056] mt-[20px]">
-                    Popular Brands Microwave Oven We Repair{" "}
-                  </h2>
-                  <ul className="text-[16px] text-[#000000d8]">
-                    <li className="text-[16px] text-[#000000d8]">- LG </li>
-                    <li className="text-[16px] text-[#000000d8]">- SAMSUNG</li>
-                    <li className="text-[16px] text-[#000000d8]">
-                      - WHIRLPOOL
-                    </li>
-                    <li className="text-[16px] text-[#000000d8]">- IFB </li>
-                    <li className="text-[16px] text-[#000000d8]">
-                      - ELECTROLUX
-                    </li>
-                    <li className="text-[16px] text-[#000000d8]">
-                      {" "}
-                      - SKYWORTH
-                    </li>
-                    <li className="text-[16px] text-[#000000d8]">- HISENSE</li>
-                  </ul>
-                </div>
-              </div>
+            <div className="basis-[70%]">
+              <ProductDescription />
             </div>
 
             <div className="">
@@ -385,116 +243,9 @@ const servicedetails = (props: Props, context: any) => {
           </div>
         </div>
       </div>
-      <div className="bg-[#FBFCFE] pt-[38px] pb-[52px] mt-[30px] w-[80rem] m-auto">
-        <div className="container mx-auto pl-[10px] sm:pl-[0px]">
-          <div className="flex items-center justify-between pr-[10px]">
-            <h1 className="text-[#2591B2] md:text-[20px] text-[17px] leading-[38.88px] font-bold">
-              Popular Services Near you
-            </h1>
-            <p className="sm:hidden text-[#BB243F]/[0.5] text-[12px] leading-[18px] font-normal cursor-pointer">
-              View All
-            </p>
-          </div>
-          <Slider {...settings} className="mt-[28.5px] ">
-            <div>
-              <div className="bg-white border border-[#EDEDED] rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%] ">
-                <img
-                  src="/../assets/microwave.png"
-                  alt=""
-                  className="w-[122px] h-[72px] object-cover"
-                />
-              </div>
-              <p className="text-center text-[#000000] text-[10px] md:text-[15px] leading-[21.09px] font-normal">
-                Microwave Oven
-              </p>
-            </div>
-            <div>
-              <div className="bg-white border border-[#EDEDED] rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
-                <img
-                  src="/../assets/deepfridge.png"
-                  alt=""
-                  className="w-[122px] h-[72px] object-cover"
-                />
-              </div>
-              <p className="text-center text-[#000000] text-[10px] md:text-[15px] leading-[21.09px] font-normal">
-                Deep Fridge-VISI Cooler
-              </p>
-            </div>
-            <div>
-              <div className="bg-white border border-[#EDEDED] rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
-                <img
-                  src="/../assets/geyser.png"
-                  alt=""
-                  className="w-[122px] h-[72px] object-cover"
-                />
-              </div>
-              <p className="text-center text-[#000000] text-[10px] md:text-[15px] leading-[21.09px] font-normal">
-                Geyser
-              </p>
-            </div>
-            <div>
-              <div className="bg-white border border-[#EDEDED] rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
-                <img
-                  src="/../assets/refrigerator.png"
-                  alt=""
-                  className="w-[122px] h-[72px] object-cover"
-                />
-              </div>
-              <p className="text-center text-[#000000] text-[10px] md:text-[15px] leading-[21.09px] font-normal">
-                Refrigerator
-              </p>
-            </div>
-            <div>
-              <div className="bg-white border border-[#EDEDED] rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
-                <img
-                  src="/../assets/chimney.png"
-                  alt=""
-                  className="w-[122px] h-[72px] object-cover"
-                />
-              </div>
-              <p className="text-center text-[#000000] text-[10px] md:text-[15px] leading-[21.09px] font-normal">
-                Chimney
-              </p>
-            </div>
-            <div>
-              <div className="bg-white border border-[#EDEDED] rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
-                <img
-                  src="/../assets/chimney.png"
-                  alt=""
-                  className="w-[122px] h-[72px] object-cover"
-                />
-              </div>
-              <p className="text-center text-[#000000] text-[10px] md:text-[15px] leading-[21.09px] font-normal">
-                Chimney
-              </p>
-            </div>
-            <div>
-              <div className="bg-white border border-[#EDEDED] rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
-                <img
-                  src="/../assets/homeheater.png"
-                  alt=""
-                  className="w-[122px] h-[72px] object-cover"
-                />
-              </div>
-              <p className="text-center text-[#000000] text-[10px] md:text-[15px] leading-[21.09px] font-normal">
-                Home Heater
-              </p>
-            </div>
-            <div>
-              <div className="bg-white border border-[#EDEDED] rounded-[5px] mb-[27px] flex items-center justify-center flex-col w-[106px] h-[100px] md:w-[162px] md:h-[106px] 2xl:w-[93%]">
-                <img
-                  src="/../assets/vaccumeCleaner.png"
-                  alt=""
-                  className="w-[122px] h-[72px] object-cover"
-                />
-              </div>
-              <p className="text-center text-[#000000] text-[10px] md:text-[15px] leading-[21.09px] font-normal">
-                Vacume Cleaner
-              </p>
-            </div>
-          </Slider>
-        </div>
-      </div>
+      <PopularServicesSlide settings={settings} />
+
+      {/* WHY CHOOSE SMART */}
       <div className="flex w-full">
         <div className="basis-[25%] bg-[#2591B2]">
           <div className="container mx-auto grid md:grid-cols-1 grid-cols-1 text-white pt-[65px] pb-[75px] md:gap-[86px]">
@@ -817,76 +568,7 @@ const servicedetails = (props: Props, context: any) => {
           </div>
         </div>
       </div>
-      <div>
-        <div className="container mx-auto pt-[101px] pb-[111px]">
-          <h1 className="text-[#2591B2] text-[23px] leading-[32.89px] font-semibold tracking-[0.01em] text-center">
-            FAQ On Washing Machine Repair And Services
-          </h1>
-          <div className="pl-[274px] pr-[270px] mt-[40px]">
-            <div className="bg-[#2591B21A] py-[12px] pl-[16px]">
-              <p className="text-[#505056] text-[16px] leading-[22.88px] font-normal tracking-[0.01em]">
-                What brands of microwave ovens do you repair?
-              </p>
-            </div>
-            <p className="text-[#505056] text-[16px] leading-[25.6px] font-normal tracking-[0.01em] mt-[12px]">
-              Smart Care Technicians can work with any brand of microwave.
-              However, LG, Samsung, Whirlpool, IFB, ELECTROLUX, Skyworth, and
-              Hisense are the popular brands that Smart Care normally deals
-              with.
-            </p>
-          </div>
-          <div className="pl-[274px] pr-[270px] mt-[55px]">
-            <div className="bg-[#2591B21A] py-[12px] pl-[16px]">
-              <p className="text-[#505056] text-[16px] leading-[22.88px] font-normal tracking-[0.01em]">
-                Should I trust Smart Care Microwave oven Repair and Services
-                technician?
-              </p>
-            </div>
-            <p className="text-[#505056] text-[16px] leading-[25.6px] font-normal tracking-[0.01em] mt-[12px]">
-              All Microwave Repair and Services on Smart Care are experienced
-              and background checked. Our main concern is our client’s safety.
-              So, You do not have to worry about it.
-            </p>
-          </div>
-          <div className="pl-[274px] pr-[270px] mt-[55px]">
-            <div className="bg-[#2591B21A] py-[12px] pl-[16px]">
-              <p className="text-[#505056] text-[16px] leading-[22.88px] font-normal tracking-[0.01em]">
-                What are the services Smart Care provides in Microwave repair?
-              </p>
-            </div>
-            <p className="text-[#505056] text-[16px] leading-[25.6px] font-normal tracking-[0.01em] mt-[12px]">
-              Microwave Repair and Services Provided by Smart Care include
-              diagnosis of the fault in the microwave, repair it, and replacing
-              the genuine parts if needed.
-            </p>
-          </div>
-          <div className="pl-[274px] pr-[270px] mt-[55px]">
-            <div className="bg-[#2591B21A] py-[12px] pl-[16px]">
-              <p className="text-[#505056] text-[16px] leading-[22.88px] font-normal tracking-[0.01em]">
-                How much will it cost me to get my microwave Oven repaired?
-              </p>
-            </div>
-            <p className="text-[#505056] text-[16px] leading-[25.6px] font-normal tracking-[0.01em] mt-[12px]">
-              The cost of the Microwave Repair and Services cannot be fixed
-              before a diagnosis of the fault in the microwave. After analyzing
-              the problem, adding service charge, and spare parts cost if needed
-              to be replaced, we can decide the cost.
-            </p>
-          </div>
-          <div className="pl-[274px] pr-[270px] mt-[55px]">
-            <div className="bg-[#2591B21A] py-[12px] pl-[16px]">
-              <p className="text-[#505056] text-[16px] leading-[22.88px] font-normal tracking-[0.01em]">
-                Why should I keep my microwave clean?
-              </p>
-            </div>
-            <p className="text-[#505056] text-[16px] leading-[25.6px] font-normal tracking-[0.01em] mt-[12px]">
-              The remaining food or grease on the bottom of your microwave, as
-              well as moisture from the steam in the air, can combine with filth
-              and oil to produce a bacteria-friendly environment.
-            </p>
-          </div>
-        </div>
-      </div>
+      <FAQComponent />
       <BottomNavbar />
       <Footerinfo />
       <Copyright />
