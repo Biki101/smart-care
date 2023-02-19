@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import BottomNavbar from "../../../components/BottomNavbar";
-import Copyright from "../../../components/Copyright";
-import Footerinfo from "../../../components/Footerinfo";
-import Topbar from "../../../components/Topbar";
+import BottomNavbar from "../../../../components/BottomNavbar";
+import Copyright from "../../../../components/Copyright";
+import Footerinfo from "../../../../components/Footerinfo";
+import Topbar from "../../../../components/Topbar";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -12,11 +12,10 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import productDetails, {
   setProductDetails,
-} from "../../../redux/productDetails";
-import ProductDescription from "../../../components/ProductDescription";
-import PopularServicesSlide from "../../../components/PopularServicesSlide";
-import FAQComponent from "../../../components/FAQComponent";
-import Link from "next/link";
+} from "../../../../redux/productDetails";
+import ProductDescription from "../../../../components/ProductDescription";
+import PopularServicesSlide from "../../../../components/PopularServicesSlide";
+import FAQComponent from "../../../../components/FAQComponent";
 
 function SampleNextArrow({ onClick }: any) {
   return (
@@ -104,7 +103,7 @@ const settings = {
 
 type Props = {};
 
-const servicedetails = (props: Props, context: any) => {
+const buyproduct = (props: Props, context: any) => {
   const [productUrl, setProductUrl] = useState("");
   const [productDescription, setproductDescription] = useState({
     title: "",
@@ -137,7 +136,7 @@ const servicedetails = (props: Props, context: any) => {
   });
 
   const router = useRouter();
-  const url: any = router?.query.servicedetails;
+  const url: any = router?.query.buyproduct;
   console.log(url);
   useEffect(() => {
     setProductUrl(url);
@@ -171,7 +170,7 @@ const servicedetails = (props: Props, context: any) => {
       <div>
         <div className="serivedetail relative mb-[37px]">
           <img
-            src="/../assets/servicedetails/banner.jpg"
+            src="/../assets/buyproduct/banner.jpg"
             className="w-full h-[332px] object-cover"
             alt=""
           />
@@ -215,33 +214,27 @@ const servicedetails = (props: Props, context: any) => {
                 </h1>
                 <div>
                   {productCategoriesList?.map((items: any, index: any) => (
-                    <div key={index}>
-                      <Link
-                        href={{
-                          pathname: `/smart/allservices/buyproduct/${items?.model}`,
-                          query: { product: items?.text },
-                        }}
+                    <div
+                      key={index}
+                      className="w-[283px] h-[54px] bg-white mt-[50px] ml-[31px] flex items-center justify-between pr-[15.42px] pl-[19.96px]"
+                    >
+                      <p className="text-[#232323] no-underline text-[18px] leading-[25.74px] font-normal cursor-pointer">
+                        {items?.text}
+                      </p>
+                      <svg
+                        width="8"
+                        height="14"
+                        viewBox="0 0 8 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <div className="w-[283px] h-[54px] bg-white mt-[50px] ml-[31px] flex items-center justify-between pr-[15.42px] pl-[19.96px]">
-                          <p className="text-[#232323] no-underline text-[18px] leading-[25.74px] font-normal cursor-pointer">
-                            {items?.text}
-                          </p>
-                          <svg
-                            width="8"
-                            height="14"
-                            viewBox="0 0 8 14"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M1.13672 1L6.57903 7L1.13672 13"
-                              stroke="#121212"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                            />
-                          </svg>
-                        </div>
-                      </Link>
+                        <path
+                          d="M1.13672 1L6.57903 7L1.13672 13"
+                          stroke="#121212"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                      </svg>
                     </div>
                   ))}
                 </div>
@@ -583,4 +576,4 @@ const servicedetails = (props: Props, context: any) => {
   );
 };
 
-export default servicedetails;
+export default buyproduct;

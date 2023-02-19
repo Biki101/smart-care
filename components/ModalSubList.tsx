@@ -66,7 +66,7 @@ const ModalSubList = (props: any) => {
           <div key={index}>
             <Link
               href={{
-                pathname: `/smart/allservices/${items?.model}`,
+                pathname: `/smart/allservices/buyproduct/${items?.model}`,
                 query: { product: items?.text },
               }}
             >
